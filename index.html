@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>نتابع سوا</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- شاشة الدخول -->
+  <div id="entry-screen" class="screen">
+    <div class="card">
+      <h1>نتابع سوا 🎬</h1>
+      <p class="sub">شارك الرابط مع خويك وتابعوا أي فيديو مع بعض، بمايك وشات</p>
+      <input id="name-input" type="text" placeholder="اسمك" maxlength="20" />
+      <button id="enter-btn">إنشاء / دخول الغرفة</button>
+      <p class="hint" id="mode-hint">بدون رابط غرفة: بننشئ لك غرفة جديدة تشاركها</p>
+    </div>
+  </div>
+
+  <!-- شاشة الغرفة -->
+  <div id="room-screen" class="screen hidden">
+    <header class="topbar">
+      <div class="brand">نتابع سوا</div>
+      <button id="copy-link-btn" title="نسخ رابط الغرفة">📋 نسخ رابط الدعوة</button>
+      <div class="status" id="peer-status">تنتظر خويك ينضم...</div>
+      <button id="mic-btn" class="mic-off" title="تشغيل/إيقاف المايك">🎤 المايك</button>
+    </header>
+
+    <main class="main-layout">
+      <section class="video-section">
+        <div class="video-input-bar">
+          <input id="video-url" type="text" placeholder="حط رابط يوتيوب أو رابط فيديو مباشر (mp4/m3u8)..." />
+          <button id="load-video-btn">تحميل</button>
+        </div>
+        <div id="player-container">
+          <div id="placeholder">حط رابط الفيديو فوق وابدأ المشاهدة</div>
+          <div id="youtube-player"></div>
+          <video id="native-player" controls playsinline style="display:none;"></video>
+        </div>
+      </section>
+
+      <aside class="chat-section">
+        <div id="chat-messages"></div>
+        <div class="chat-input-bar">
+          <input id="chat-input" type="text" placeholder="اكتب رسالة..." maxlength="300" />
+          <button id="send-chat-btn">إرسال</button>
+        </div>
+      </aside>
+    </main>
+
+    <audio id="remote-audio" autoplay></audio>
+  </div>
+
+<script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
