@@ -228,7 +228,7 @@ function showEntryError(msg) {
   entryError.classList.remove('hidden');
 }
 
-const MODE_LABELS = { watch: 'نتابع سوا', games: 'ألعابنا', world: 'عالمنا' };
+const MODE_LABELS = { watch: 'نتابع', games: 'نلعب', world: 'سوا؟' };
 const MODE_CREATE_LABELS = { watch: 'إنشاء غرفة متابعة', games: 'إنشاء غرفة ألعاب', world: 'إنشاء عالمنا' };
 
 function goToStep(step) {
@@ -290,7 +290,7 @@ if (storedSession) {
 
 function activateRoomMode(mode) {
   roomMode = mode;
-  roomModeLabel.textContent = MODE_LABELS[mode] || 'نتابع سوا';
+  roomModeLabel.textContent = MODE_LABELS[mode] || 'onlyUs';
   watchPanel.classList.toggle('hidden', mode !== 'watch');
   gamesPanel.classList.toggle('hidden', mode !== 'games');
   worldPanel.classList.toggle('hidden', mode !== 'world');
@@ -473,7 +473,7 @@ waitingCopyBtn.addEventListener('click', () => copyRoomCode(waitingCopyBtn));
 // ================= الخروج من الغرفة =================
 
 leaveRoomBtn.addEventListener('click', () => {
-  if (!confirm('تبي تطلع من الغرفة؟')) return;
+  if (!confirm('اصعب لحظة خروجك😞')) return;
   sendData({ kind: 'peer-left' });
   clearSession();
   setTimeout(() => window.location.reload(), 80);
