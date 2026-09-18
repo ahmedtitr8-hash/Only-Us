@@ -186,6 +186,37 @@ export function hairTexture(THREE, hexColor, { repeat = 5 } = {}) {
   return { map };
 }
 
+// -------- سجادة غرفة معيشة بحدود مزخرفة (بدل قماش لون واحد) --------
+export function rugPatternTexture(THREE, { base = '#8a3f34', border = '#d9c49a', repeat = 1 } = {}) {
+  const size = 512;
+  const canvas = makeCanvas(size);
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = base;
+  ctx.fillRect(0, 0, size, size);
+  const margin = size * 0.08;
+  ctx.strokeStyle = border;
+  ctx.lineWidth = size * 0.02;
+  ctx.strokeRect(margin, margin, size - margin * 2, size - margin * 2);
+  ctx.lineWidth = size * 0.006;
+  ctx.strokeRect(margin * 1.7, margin * 1.7, size - margin * 3.4, size - margin * 3.4);
+  // نقشة خفيفة بالمنتصف
+  ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+  ctx.lineWidth = 2;
+  for (let i = 0; i < 6; i++) {
+    const r = 30 + i * 22;
+    ctx.beginPath();
+    ctx.arc(size / 2, size / 2, r, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+  // نسيج خفيف (ألياف)
+  for (let y = 0; y < size; y += 3) {
+    ctx.fillStyle = y % 6 === 0 ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.03)';
+    ctx.fillRect(0, y, size, 1);
+  }
+  const map = toTexture(THREE, canvas, { repeatX: repeat, repeatY: repeat });
+  return { map };
+}
+
 // -------- ظل تلامس ناعم أسفل الشخصية (يعطي إحساس أنها "واقفة فعليًا" على الأرض) --------
 export function contactShadowTexture(THREE) {
   const size = 128;

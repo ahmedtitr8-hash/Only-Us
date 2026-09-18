@@ -8,39 +8,48 @@ import { CharacterController } from './characters/character.js';
 import { WorldSync, interpolateRemote } from './network/world-sync.js';
 import { Joystick } from './ui/joystick.js';
 import { createLoadingOverlay, createCharacterPicker, createInteractButton, createPeerWaitingBadge } from './ui/world-menu.js';
+import { detectQuality } from './engine/quality.js';
+import { tryLoadHDRI } from './engine/assets-loader.js';
 
 const THREE_URL = 'https://unpkg.com/three@0.160.1/build/three.module.js';
 const STORAGE_KEY = 'onlyus_world_character';
 
 let active = null; // نسمح بجلسة عالم واحدة نشطة بنفس الوقت
 
-export async function enterWorld({ container, bridge, worldId = 'kitchen' }) {
+export async function enterWorld({ container, bridge, worldId = 'living-room' }) {
   if (active) return active;
 
   const loading = createLoadingOverlay(container, 'جاري تجهيز عالمنا…');
   loading.setProgress(8);
 
   const THREE = await import(/* webpackIgnore: true */ THREE_URL);
-  loading.setProgress(35);
+  loading.setProgress(30);
+
+  const { preset: quality } = detectQuality();
 
   const worldDef = WORLDS.find((w) => w.id === worldId) || WORLDS[0];
   const worldMod = await worldDef.loader();
-  loading.setProgress(60);
+  loading.setProgress(50);
 
   const canvas = document.createElement('canvas');
   canvas.className = 'w3d-canvas';
   container.appendChild(canvas);
 
-  const renderer = createRenderer(THREE, canvas);
+  const renderer = createRenderer(THREE, canvas, quality);
   const scene = createScene(THREE);
-  addBaseLighting(THREE, scene);
+  addBaseLighting(THREE, scene, { quality });
+
+  // HDRI اختياري لكل عالم — إن لم يوجد ملف hdri/room.hdr بمجلد العالم يبقى بلا أثر
+  // (تحاول بهدوء وترجع false، والإضاءة الإجرائية أعلاه تفضل تشتغل كما هي).
+  tryLoadHDRI(THREE, renderer, scene, `worlds/worlds/${worldDef.id}/assets/hdri/room.hdr`);
 
   const camRig = new ThirdPersonCamera(THREE, { domElement: canvas, scene });
 
   const interactBtn = createInteractButton(container);
   const interaction = new InteractionSystem(interactBtn);
 
-  const world = worldMod.buildKitchen ? worldMod.buildKitchen(THREE, interaction) : worldMod.build(THREE, interaction);
+  const buildFn = worldMod.buildLivingRoom || worldMod.buildKitchen || worldMod.build;
+  const world = await buildFn(THREE, interaction, { renderer, scene, quality });
   scene.add(world.group);
   loading.setProgress(80);
 

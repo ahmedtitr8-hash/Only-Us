@@ -330,7 +330,7 @@ function loadWorld() {
   if (worldLoaded) return;
   worldLoaded = true;
   import('./worlds/world-main.js')
-    .then((mod) => mod.enterWorld({ container: worldContainer, bridge: window.WorldBridge, worldId: 'kitchen' }))
+    .then((mod) => mod.enterWorld({ container: worldContainer, bridge: window.WorldBridge, worldId: 'living-room' }))
     .catch((err) => {
       console.error('تعذر تحميل عالمنا:', err);
       worldContainer.innerHTML = '<p style="padding:24px;text-align:center">تعذر تحميل «سوا» — تأكد من اتصال الإنترنت وحاول مرة ثانية.</p>';

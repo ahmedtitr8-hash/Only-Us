@@ -1,13 +1,15 @@
 // قائمة العوالم المتاحة. أضف عالمًا جديدًا هنا بدون لمس بقية المحرك.
+// حسب مستند التنفيذ: غرفة واحدة ممتازة أولًا قبل أي توسّع — لذلك "غرفة المعيشة" هي
+// العالم الافتراضي الوحيد المتاح حاليًا داخل «سوا»، والمطبخ محفوظ (متوفر=false) بدل حذفه.
 export const WORLDS = [
   {
-    id: 'kitchen',
-    name: 'المطبخ',
+    id: 'living-room',
+    name: 'غرفة المعيشة',
     available: true,
-    loader: () => import('./worlds/kitchen/scene.js'),
+    loader: () => import('./worlds/living-room/scene.js'),
   },
+  { id: 'kitchen', name: 'المطبخ', available: false, loader: () => import('./worlds/kitchen/scene.js') },
   { id: 'cafe', name: 'الكافيه', available: false },
-  { id: 'living-room', name: 'غرفة المعيشة', available: false },
   { id: 'rooftop', name: 'السطح', available: false },
   { id: 'camping', name: 'التخييم', available: false },
 ];
