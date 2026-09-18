@@ -1,0 +1,52 @@
+// إعداد الـ renderer والمشهد والإضاءة الأساسية — بدون أي منطق خاص بعالم معيّن.
+export function createRenderer(THREE, canvas) {
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  return renderer;
+}
+
+export function createScene(THREE) {
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x100e0a);
+  scene.fog = new THREE.Fog(0x100e0a, 10, 24);
+  return scene;
+}
+
+export function addBaseLighting(THREE, scene, { warm = true } = {}) {
+  // إضاءة سماء/أرض عامة ناعمة (تحاكي الضوء المرتد من الجدران والسقف)
+  const hemi = new THREE.HemisphereLight(0xd9e8ff, 0x2a221a, 0.55);
+  scene.add(hemi);
+
+  // "شمس" داخلة من النافذة — مصدر الظلال الرئيسي، حادة نسبيًا وواقعية
+  const sun = new THREE.DirectionalLight(warm ? 0xffe9c9 : 0xffffff, 1.6);
+  sun.position.set(3.5, 5.5, 2.5);
+  sun.castShadow = true;
+  sun.shadow.mapSize.set(2048, 2048);
+  sun.shadow.camera.near = 0.5;
+  sun.shadow.camera.far = 18;
+  sun.shadow.camera.left = -6.5;
+  sun.shadow.camera.right = 6.5;
+  sun.shadow.camera.top = 6.5;
+  sun.shadow.camera.bottom = -6.5;
+  sun.shadow.bias = -0.0018;
+  sun.shadow.normalBias = 0.02;
+  sun.shadow.radius = 2.2;
+  scene.add(sun);
+
+  // ضوء تعبئة دافئ (يقلل حدة الظل المقابل للشمس، زي لمبة سقف)
+  const fill = new THREE.PointLight(0xffcf9e, 0.65, 10, 2);
+  fill.position.set(-2.2, 2.5, -1.5);
+  scene.add(fill);
+
+  // ضوء خلفي/محيطي باهت جدًا يفصل الشخصيات عن خلفية الغرفة الداكنة (Rim light)
+  const rim = new THREE.DirectionalLight(0xbcd4ff, 0.28);
+  rim.position.set(-4, 3, -4);
+  scene.add(rim);
+
+  return { hemi, sun, fill, rim };
+}
