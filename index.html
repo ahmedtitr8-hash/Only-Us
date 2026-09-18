@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
+<title>نتابع سوا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- شاشة الدخول -->
+  <div id="entry-screen" class="screen">
+    <div class="entry-card">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 6a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v3.2l4.1-2.8a.9.9 0 0 1 1.4.75v9.7a.9.9 0 0 1-1.4.75L17 14.8V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </div>
+      <h1>نتابع سوا</h1>
+
+      <!-- خطوة ١: اختيار النشاط -->
+      <div class="entry-step" id="entry-step-mode">
+        <p class="entry-sub">اختر أي شيء تبون تشاركونه الحين</p>
+        <div class="mode-grid">
+          <button class="mode-card" data-mode="watch">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 6a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v3.2l4.1-2.8a.9.9 0 0 1 1.4.75v9.7a.9.9 0 0 1-1.4.75L17 14.8V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            <span>متابعة</span>
+          </button>
+          <button class="mode-card" data-mode="games">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="11" rx="4" stroke="currentColor" stroke-width="1.5"/><path d="M8 10.5v4M6 12.5h4M15.5 11h.01M17.5 13h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>ألعاب</span>
+          </button>
+          <button class="mode-card" data-mode="world">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18M5.5 5.5c2 2 4 3 6.5 3s4.5-1 6.5-3M5.5 18.5c2-2 4-3 6.5-3s4.5 1 6.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>عالمنا</span>
+          </button>
+        </div>
+        <div class="divider"><span>أو</span></div>
+        <button id="show-join-btn" class="secondary-btn full-width">دخول لغرفة برمز</button>
+      </div>
+
+      <!-- خطوة ٢أ: إنشاء غرفة (بعد اختيار نشاط) -->
+      <div class="entry-step hidden" id="entry-step-create">
+        <button class="back-btn" id="back-from-create" title="رجوع">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="field">
+          <label for="name-input-create">اسمك</label>
+          <input id="name-input-create" type="text" placeholder="اكتب اسمك" maxlength="20" autocomplete="off" />
+        </div>
+        <button id="confirm-create-btn" class="primary-btn">
+          <span id="confirm-create-text">إنشاء الغرفة</span>
+          <span class="spinner hidden" id="create-spinner"></span>
+        </button>
+      </div>
+
+      <!-- خطوة ٢ب: دخول برمز -->
+      <div class="entry-step hidden" id="entry-step-join">
+        <button class="back-btn" id="back-from-join" title="رجوع">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="field">
+          <label for="name-input-join">اسمك</label>
+          <input id="name-input-join" type="text" placeholder="اكتب اسمك" maxlength="20" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="room-code-input">رمز الغرفة</label>
+          <input id="room-code-input" type="text" inputmode="numeric" maxlength="8" placeholder="رمز الغرفة" />
+        </div>
+        <button id="join-room-btn" class="primary-btn">
+          <span id="join-room-text">دخول</span>
+          <span class="spinner hidden" id="join-spinner"></span>
+        </button>
+        <p class="entry-error hidden" id="entry-error"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- شاشة الغرفة -->
+  <div id="room-screen" class="screen hidden">
+    <header class="topbar">
+      <div class="brand">
+        <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M4 6a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v3.2l4.1-2.8a.9.9 0 0 1 1.4.75v9.7a.9.9 0 0 1-1.4.75L17 14.8V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span id="room-mode-label">نتابع سوا</span>
+      </div>
+      <button id="copy-code-btn" class="icon-btn" title="نسخ رمز الغرفة">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 9V7a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-2M6 9h7a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button id="leave-room-btn" class="icon-btn icon-btn-danger" title="الخروج من الغرفة">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 21H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </header>
+
+    <main class="main-layout" id="main-layout">
+
+      <!-- لوحة المتابعة -->
+      <section class="activity-panel video-section hidden" id="watch-panel">
+        <div class="video-input-bar" id="video-input-bar">
+          <svg viewBox="0 0 24 24" fill="none" class="input-icon"><path d="M10 4h4M10 20h4M4 10v4M20 10v4M6.34 6.34l2.83 2.83M17.66 6.34l-2.83 2.83M6.34 17.66l2.83-2.83M17.66 17.66l-2.83-2.83" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <input id="video-url" type="text" placeholder="رابط يوتيوب أو mp4 / mkv / ts / m3u8" />
+          <button id="load-video-btn">تشغيل</button>
+        </div>
+
+        <button class="change-video-btn hidden" id="change-video-btn" title="تغيير الفيديو">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 14.5-4.5M20 15a8 8 0 0 1-14.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div id="player-container">
+          <div id="placeholder">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 6a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v3.2l4.1-2.8a.9.9 0 0 1 1.4.75v9.7a.9.9 0 0 1-1.4.75L17 14.8V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          </div>
+          <div id="youtube-player"></div>
+          <video id="native-player" playsinline></video>
+
+          <div class="custom-controls hidden" id="custom-controls">
+            <button id="play-pause-btn" class="control-btn">
+              <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>
+              <svg class="icon-pause hidden" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+            </button>
+
+            <span class="time-label" id="time-current">00:00</span>
+
+            <div class="progress-track" id="progress-track">
+              <div class="progress-fill" id="progress-fill"></div>
+              <div class="progress-handle" id="progress-handle"></div>
+            </div>
+
+            <span class="time-label" id="time-duration">00:00</span>
+
+            <div class="video-volume-group">
+              <button id="mute-btn" class="control-btn">
+                <svg class="icon-vol-on" viewBox="0 0 24 24" fill="none"><path d="M5 9v6h4l5 4V5L9 9H5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M17 9a4 4 0 0 1 0 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <svg class="icon-vol-off hidden" viewBox="0 0 24 24" fill="none"><path d="M5 9v6h4l5 4V5L9 9H5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M16 9l4 6M20 9l-4 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <input id="video-volume" type="range" min="0" max="100" value="100" />
+            </div>
+
+            <button id="fullscreen-btn" class="control-btn">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 4H5a1 1 0 0 0-1 1v4M15 4h4a1 1 0 0 1 1 1v4M9 20H5a1 1 0 0 1-1-1v-4M15 20h4a1 1 0 0 0 1-1v-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <div class="waiting-overlay hidden" id="waiting-overlay">
+            <div class="waiting-code" id="waiting-code">--------</div>
+            <button id="waiting-copy-btn" class="icon-btn-round waiting-copy" title="نسخ الرمز">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 9V7a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-2M6 9h7a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <span class="spinner"></span>
+          </div>
+
+          <div class="buffering-overlay hidden" id="buffering-overlay">
+            <span class="spinner"></span>
+          </div>
+
+          <div class="player-error hidden" id="player-error"></div>
+        </div>
+      </section>
+
+      <!-- لوحة عالمنا (3D) -->
+      <section class="activity-panel world-section hidden" id="world-panel">
+        <div id="world-container"></div>
+      </section>
+
+      <!-- لوحة الألعاب -->
+      <section class="activity-panel games-section hidden" id="games-panel">
+        <div id="game-picker">
+          <button class="game-choice" data-game="xo">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>إكس أو</span>
+          </button>
+          <button class="game-choice" data-game="rps">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M7 11V6a2 2 0 1 1 4 0v4M11 10V4a2 2 0 1 1 4 0v6M15 10V6a2 2 0 1 1 4 0v6.5c0 3.6-2.5 6.5-6 6.5h-1c-2.5 0-4-1-5.5-3L4 12.5c-.6-.9-.3-1.8.5-2.2.7-.4 1.5-.2 2 .4L8 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>حجر ورقة مقص</span>
+          </button>
+          <button class="game-choice" data-game="connect4">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="7.5" cy="8.5" r="1.6" fill="currentColor"/><circle cx="12" cy="8.5" r="1.6" fill="currentColor"/><circle cx="16.5" cy="8.5" r="1.6" fill="currentColor"/><circle cx="7.5" cy="13" r="1.6" fill="currentColor"/><circle cx="12" cy="13" r="1.6" fill="currentColor"/><circle cx="16.5" cy="13" r="1.6" fill="currentColor"/></svg>
+            <span>أربح أربعة</span>
+          </button>
+          <button class="game-choice" data-game="memory">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>الذاكرة</span>
+          </button>
+        </div>
+
+        <div id="game-board-wrap" class="hidden">
+          <button id="game-back-btn" class="change-video-btn" title="رجوع للألعاب">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+
+          <div id="xo-board" class="game-board hidden">
+            <div class="game-status" id="xo-status"></div>
+            <div class="xo-grid" id="xo-grid">
+              <button class="xo-cell" data-i="0"></button>
+              <button class="xo-cell" data-i="1"></button>
+              <button class="xo-cell" data-i="2"></button>
+              <button class="xo-cell" data-i="3"></button>
+              <button class="xo-cell" data-i="4"></button>
+              <button class="xo-cell" data-i="5"></button>
+              <button class="xo-cell" data-i="6"></button>
+              <button class="xo-cell" data-i="7"></button>
+              <button class="xo-cell" data-i="8"></button>
+            </div>
+            <button id="xo-restart-btn" class="secondary-btn hidden">لعب مرة ثانية</button>
+          </div>
+
+          <div id="rps-board" class="game-board hidden">
+            <div class="game-status" id="rps-score">٠ - ٠</div>
+            <div class="rps-choices" id="rps-choices">
+              <button class="rps-choice" data-choice="rock">حجر</button>
+              <button class="rps-choice" data-choice="paper">ورقة</button>
+              <button class="rps-choice" data-choice="scissors">مقص</button>
+            </div>
+            <p class="rps-waiting hidden" id="rps-waiting">بانتظار الطرف الآخر...</p>
+            <div class="rps-result hidden" id="rps-result">
+              <div class="rps-reveal" id="rps-reveal"></div>
+              <p id="rps-result-text"></p>
+              <button id="rps-next-btn" class="secondary-btn">الجولة التالية</button>
+            </div>
+          </div>
+
+          <div id="connect4-board" class="game-board hidden">
+            <div class="game-status" id="connect4-status"></div>
+            <div class="connect4-grid" id="connect4-grid"></div>
+            <button id="connect4-restart-btn" class="secondary-btn hidden">لعب مرة ثانية</button>
+          </div>
+
+          <div id="memory-board" class="game-board hidden">
+            <div class="game-status" id="memory-status">٠ - ٠</div>
+            <div class="memory-grid" id="memory-grid"></div>
+            <button id="memory-restart-btn" class="secondary-btn hidden">لعب مرة ثانية</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- المشاركون -->
+      <section class="participants-row">
+        <div class="participant-card" id="card-me">
+          <span class="avatar" id="avatar-me">أ</span>
+          <span class="participant-name" id="name-me-label">أنت</span>
+          <button id="mic-btn" class="mic-toggle" title="تشغيل / إيقاف المايك">
+            <svg class="icon-mic-on" viewBox="0 0 24 24" fill="none"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="icon-mic-off hidden" viewBox="0 0 24 24" fill="none"><path d="M9 9V6a3 3 0 0 1 6 0v3M15 12v0a3 3 0 0 1-4.24 2.73M19 11a7 7 0 0 1-1.68 4.55M5 11a7 7 0 0 0 7 7m0 0v3M3 3l18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+        <div class="participant-card" id="card-peer">
+          <span class="avatar avatar-empty" id="avatar-peer">؟</span>
+          <span class="participant-name" id="name-peer-label">بانتظار الانضمام</span>
+          <span class="mic-indicator" id="peer-mic-indicator" title="حالة مايك الطرف الآخر">
+            <svg class="icon-mic-on hidden" viewBox="0 0 24 24" fill="none"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="icon-mic-off" viewBox="0 0 24 24" fill="none"><path d="M9 9V6a3 3 0 0 1 6 0v3M15 12v0a3 3 0 0 1-4.24 2.73M19 11a7 7 0 0 1-1.68 4.55M5 11a7 7 0 0 0 7 7m0 0v3M3 3l18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </section>
+
+      <!-- المحادثة -->
+      <section class="chat-section">
+        <div id="chat-messages">
+          <div class="chat-empty" id="chat-empty"></div>
+        </div>
+
+        <div class="typing-indicator hidden" id="typing-indicator">
+          <span class="typing-dots"><i></i><i></i><i></i></span>
+          <span id="typing-text">يكتب الآن</span>
+        </div>
+
+        <div class="chat-input-bar">
+          <input id="chat-input" type="text" placeholder="اكتب رسالة" maxlength="500" />
+          <button id="send-chat-btn" class="icon-btn-round" title="إرسال">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M21 3 3 10.5l7 2.5 2 7L21 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </section>
+
+    </main>
+
+    <audio id="remote-audio" autoplay></audio>
+  </div>
+
+<script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mpegts.js@latest/dist/mpegts.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
