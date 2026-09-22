@@ -1,0 +1,218 @@
+[Termux] Global DNS redirected to 8.8.8.8
+2026/08/11 12:48:15 [unexpected] policy requires hardware attestation, but device does not support it: --hardware-attestation is not supported on this platform or in this build of tailscaled
+[Termux] /proc/net/if_inet6 unavailable
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
+2026/08/11 12:48:15 Program starting: v1.100.0-dev20260802-t0a98906f4, Go 1.26.4: []string{"/data/data/com.termux/files/usr/bin/tailscaled", "--statedir=/data/data/com.termux/files/home/.tailscale", "--socket=/data/data/com.termux/files/home/.tailscale/tailscaled.sock", "--tun=userspace-networking", "--socks5-server=127.0.0.1:17707"}
+2026/08/11 12:48:15 LogID: 81a0f8fd14ba78a017e82c4c69b185a0c0dd0a384a32dd233d6fb59a7fe55e0f
+2026/08/11 12:48:15 logpolicy: using UserCacheDir, "/data/data/com.termux/files/home/.cache/Tailscale"
+logpolicy.ConfigFromFile /data/data/com.termux/files/home/.cache/Tailscale/tailscaled.log.conf: open /data/data/com.termux/files/home/.cache/Tailscale/tailscaled.log.conf: no such file or directory
+logpolicy.Config.Validate for /data/data/com.termux/files/home/.cache/Tailscale/tailscaled.log.conf: config is nil
+2026/08/11 12:48:15 dns: using dns.noopManager
+2026/08/11 12:48:15 wgengine.NewUserspaceEngine(tun "userspace-networking") ...
+2026/08/11 12:48:15 dns: using dns.noopManager
+2026/08/11 12:48:15 link state: interfaces.State{defaultRoute= ifs={wlan0:[192.168.0.5/24 2a02:88c:2007:68a:c46a:7b1e:f30:d503/64]} v4=true v6=true}
+2026/08/11 12:48:15 magicsock: [warning] failed to force-set UDP read buffer size to 7340032: operation not permitted; using kernel default values (impacts throughput only)
+2026/08/11 12:48:15 magicsock: [warning] failed to force-set UDP write buffer size to 7340032: operation not permitted; using kernel default values (impacts throughput only)
+2026/08/11 12:48:15 magicsock: [warning] failed to force-set UDP read buffer size to 7340032: operation not permitted; using kernel default values (impacts throughput only)
+2026/08/11 12:48:15 magicsock: [warning] failed to force-set UDP write buffer size to 7340032: operation not permitted; using kernel default values (impacts throughput only)
+2026/08/11 12:48:15 magicsock: disco key = d:ba8300add03d368d
+2026/08/11 12:48:15 Creating WireGuard device...
+2026/08/11 12:48:15 Bringing WireGuard device up...
+2026/08/11 12:48:15 Bringing router up...
+2026/08/11 12:48:15 Clearing router settings...
+2026/08/11 12:48:15 Starting network monitor...
+2026/08/11 12:48:15 Engine created.
+2026/08/11 12:48:15 pm: migrating "ipn-android" profile to new format
+2026/08/11 12:48:15 logpolicy: using UserCacheDir, "/data/data/com.termux/files/home/.cache/Tailscale"
+2026/08/11 12:48:15 linkChange: in state NoState; PAC or proxyConfig changed; updating routes
+2026/08/11 12:48:15 got LocalBackend in 11ms
+2026/08/11 12:48:15 Start
+2026/08/11 12:48:15 ipnext: "conn25": skipping extension
+2026/08/11 12:48:15 ipnext: active extensions: conn25, portlist, posture, clientupdate, relayserver, routecheck
+2026/08/11 12:48:15 TPM: error opening: stat /dev/tpmrm0: no such file or directory
+[Termux] Masking App as: tailscale-cli, DeviceModel: Termux
+2026/08/11 12:48:15 profile data directory: profile not found
+2026/08/11 12:48:15 Backend: logs: be:81a0f8fd14ba78a017e82c4c69b185a0c0dd0a384a32dd233d6fb59a7fe55e0f fe:
+2026/08/11 12:48:15 Switching ipn state NoState -> NeedsLogin (WantRunning=false, nm=false)
+2026/08/11 12:48:15 blockEngineUpdates(true)
+2026/08/11 12:48:15 wgengine: Reconfig: configuring router
+2026/08/11 12:48:15 wgengine: Reconfig: configuring DNS
+2026/08/11 12:48:15 dns: Set: {DefaultResolvers:[] Routes:{} SearchDomains:[] Hosts:0}
+2026/08/11 12:48:15 health(warnable=wantrunning-false): error: Tailscale is stopped.
+2026/08/11 12:48:15 dns: Resolvercfg: {Routes:{} Hosts:0 LocalDomains:[]}
+2026/08/11 12:48:15 dns: OScfg: {}
+2026/08/11 12:48:21 localapi: [POST] /localapi/v0/check-prefs
+2026/08/11 12:48:21 localapi: [POST] /localapi/v0/start
+2026/08/11 12:48:21 Start
+[Termux] Masking App as: tailscale-cli, DeviceModel: Termux
+2026/08/11 12:48:21 Start: updated prefs: Prefs{ra=true dns=true want=true statefulFiltering=false update=check Persist=nil}, reason: [opts.UpdatePrefs]
+2026/08/11 12:48:21 generating new machine key
+2026/08/11 12:48:21 machine key written to store
+2026/08/11 12:48:21 profile data directory: profile not found
+2026/08/11 12:48:21 Backend: logs: be:81a0f8fd14ba78a017e82c4c69b185a0c0dd0a384a32dd233d6fb59a7fe55e0f fe:
+2026/08/11 12:48:21 Switching ipn state NoState -> NeedsLogin (WantRunning=true, nm=false)
+2026/08/11 12:48:21 blockEngineUpdates(true)
+2026/08/11 12:48:21 health(warnable=warming-up): error: Tailscale is starting. Please wait.
+2026/08/11 12:48:21 control: client.Shutdown ...
+2026/08/11 12:48:21 control: mapRoutine: exiting
+2026/08/11 12:48:21 health(warnable=wantrunning-false): ok
+2026/08/11 12:48:21 control: authRoutine: exiting
+2026/08/11 12:48:21 control: updateRoutine: exiting
+2026/08/11 12:48:21 control: Client.Shutdown done.
+2026/08/11 12:48:21 localapi: [POST] /localapi/v0/login-interactive
+2026/08/11 12:48:21 StartLoginInteractiveAs(""): url=false
+2026/08/11 12:48:21 control: client.Login(2)
+2026/08/11 12:48:21 control: LoginInteractive -> regen=true
+2026/08/11 12:48:21 control: doLogin(regen=true, hasUrl=false)
+2026/08/11 12:48:21 control: trying bootstrapDNS("derp9c.tailscale.com", "155.138.243.219") for "controlplane.tailscale.com" ...
+2026/08/11 12:48:22 control: bootstrapDNS("derp9c.tailscale.com", "155.138.243.219") for "controlplane.tailscale.com" = [2606:b740:49::109 2606:b740:49::105 2606:b740:49::116 2606:b740:49::102 2606:b740:49::108 192.200.0.106 192.200.0.111 192.200.0.102 2606:b740:49::110 192.200.0.108 192.200.0.115 192.200.0.113 2606:b740:49::101 192.200.0.110 192.200.0.103 192.200.0.109 2606:b740:49::106 192.200.0.104 192.200.0.114 192.200.0.116 2606:b740:49::115 2606:b740:49::103 2606:b740:49::107 2606:b740:49::104 2606:b740:49::113 192.200.0.107 2606:b740:49::114 192.200.0.101 192.200.0.112 2606:b740:49::112 2606:b740:49::111 192.200.0.105]
+2026/08/11 12:48:22 control: control server key from https://controlplane.tailscale.com: ts2021=[fSeS+], legacy=[nlFWp]
+2026/08/11 12:48:22 control: Generating a new nodekey.
+2026/08/11 12:48:22 control: RegisterReq: onode= node=[3j+iJ] fup=false nks=false
+2026/08/11 12:48:22 control: RegisterReq: got response; nodeKeyExpired=false, machineAuthorized=false; authURL=true
+2026/08/11 12:48:22 control: AuthURL is https://login.tailscale.com/a/1d29afab018269
+2026/08/11 12:48:22 control: doLogin(regen=false, hasUrl=true)
+2026/08/11 12:48:22 Received auth URL: https://login.tailsc...
+2026/08/11 12:48:22 popBrowserAuthNow(""): url=true, key-expired=false
+2026/08/11 12:48:22 control: RegisterReq: onode= node=[3j+iJ] fup=true nks=false
+2026/08/11 12:48:26 health(warnable=warming-up): ok
+2026/08/11 12:49:36 control: RegisterReq: got response; nodeKeyExpired=false, machineAuthorized=true; authURL=false
+2026/08/11 12:49:36 blockEngineUpdates(false)
+[Termux] Masking App as: tailscale-cli, DeviceModel: Termux
+2026/08/11 12:49:36 control: netmap: got new dial plan from control
+[Termux] Masking App as: tailscale-cli, DeviceModel: Termux
+2026/08/11 12:49:36 active login: ahmedtitr8@gmail.com
+2026/08/11 12:49:36 netmap: suggested exit node: no preferred DERP, try again later
+2026/08/11 12:49:36 Switching ipn state NeedsLogin -> Starting (WantRunning=true, nm=true)
+[Termux] /proc/net/if_inet6 unavailable
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
+2026/08/11 12:49:36 magicsock: SetPrivateKey called (init)
+2026/08/11 12:49:36 wgengine: Reconfig: configuring userspace WireGuard config (with 0 peers)
+2026/08/11 12:49:36 wgengine: Reconfig: configuring router
+2026/08/11 12:49:36 wgengine: Reconfig: configuring DNS
+2026/08/11 12:49:36 dns: Set: {DefaultResolvers:[] Routes:{taile849b2.ts.net.:[] ts.net.:[199.247.155.53 2620:111:8007::53]}+65arpa SearchDomains:[taile849b2.ts.net.] Hosts:1}
+2026/08/11 12:49:36 dns: Resolvercfg: {Routes:{ts.net.:[199.247.155.53 2620:111:8007::53]} Hosts:1 LocalDomains:[taile849b2.ts.net.]+65arpa}
+2026/08/11 12:49:36 dns: OScfg: {Nameservers:[100.100.100.100 fd7a:115c:a1e0::53] SearchDomains:[taile849b2.ts.net.] MatchDomains:[taile849b2.ts.net. ts.net.]+65arpa}
+2026/08/11 12:49:36 peerapi: serving on http://100.126.147.54:1
+2026/08/11 12:49:36 peerapi: serving on http://[fd7a:115c:a1e0::a701:93c6]:1
+[Termux] /proc/net/if_inet6 unavailable
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
+2026/08/11 12:49:38 netcheck: DetectCaptivePortal(found=false)
+2026/08/11 12:49:38 magicsock: home DERP changing from derp-0 [0ms] to derp-4 [98ms] (forced=false)
+2026/08/11 12:49:38 magicsock: home is now derp-4 (fra)
+2026/08/11 12:49:38 magicsock: adding connection to derp-4 for home-keep-alive
+[Termux] /proc/net/if_inet6 unavailable
+2026/08/11 12:49:38 magicsock: 1 active derp conns: derp-4=cr0s,wr0s
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+2026/08/11 12:49:38 derphttp.Client.Connect: connecting to derp-4 (fra)
+2026/08/11 12:49:38 updating netmap in disk cache
+2026/08/11 12:49:38 control: NetInfo: NetInfo{varies=false ipv6=true ipv6os=true udp=true icmpv4=false derp=#4 portmap= link="" firewallmode=""}
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
+2026/08/11 12:49:38 magicsock: endpoints changed: 46.184.22.22:64109 (stun), [2a02:88c:2007:68a:c46a:7b1e:f30:d503]:51748 (stun), 192.168.0.5:41328 (local), [2a02:88c:2007:68a:c46a:7b1e:f30:d503]:41328 (local)
+2026/08/11 12:49:38 Switching ipn state Starting -> Running (WantRunning=true, nm=true)
+[Termux] /proc/net/if_inet6 unavailable
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
+2026/08/11 12:49:38 magicsock: derp-4 connected; connGen=1
+2026/08/11 12:50:23 socks5: client connection failed: lookup api.ipify.org on [::1]:53: read udp [::1]:37280->[::1]:53: read: connection refused
+2026/08/11 12:50:33 control: netmap: got new dial plan from control
+2026/08/11 12:50:33 netmap: suggested exit node:  ()
+[Termux] /proc/net/if_inet6 unavailable
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
+2026/08/11 12:54:30 netmap: suggested exit node:  ()
+[Termux] /proc/net/if_inet6 unavailable
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
+2026/08/11 12:57:04 localapi: [POST] /localapi/v0/query-feature
+2026/08/11 12:57:04 localapi: [POST] /localapi/v0/upload-client-metrics
+2026/08/11 12:57:53 netmap: suggested exit node:  ()
+[Termux] /proc/net/if_inet6 unavailable
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
+2026/08/11 12:57:53 localapi: [POST] /localapi/v0/upload-client-metrics
+2026/08/11 12:57:53 localapi: [POST] /localapi/v0/serve-config
+2026/08/11 12:57:53 serve: creating a new proxy handler for http://127.0.0.1:3000
+2026/08/11 12:57:53 Hostinfo.IngressEnabled changed to true
+2026/08/11 12:57:53 health(warnable=tls-cert-pending): error: Fetching TLS certificate via ACME for: tailscale-termux.taile849b2.ts.net
+2026/08/11 12:57:53 netmap: suggested exit node:  ()
+[Termux] /proc/net/if_inet6 unavailable
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
+2026/08/11 12:57:53 tstun: peer config: peerConfigTable{nativeAddr4: 100.126.147.54, nativeAddr6: fd7a:115c:a1e0::a701:93c6, }
+2026/08/11 12:57:53 wgengine: Reconfig: configuring userspace WireGuard config (with 23 peers)
+2026/08/11 12:57:53 wgengine: Reconfig: configuring router
+2026/08/11 12:57:53 router: consolidated 3 routes down to 2
+2026/08/11 12:57:53 wgengine: Reconfig: configuring DNS
+2026/08/11 12:57:53 dns: Set: {DefaultResolvers:[] Routes:{taile849b2.ts.net.:[] ts.net.:[199.247.155.53 2620:111:8007::53]}+65arpa SearchDomains:[taile849b2.ts.net.] Hosts:1}
+2026/08/11 12:57:53 dns: Resolvercfg: {Routes:{ts.net.:[199.247.155.53 2620:111:8007::53]} Hosts:1 LocalDomains:[taile849b2.ts.net.]+65arpa}
+2026/08/11 12:57:53 dns: OScfg: {Nameservers:[100.100.100.100 fd7a:115c:a1e0::53] SearchDomains:[taile849b2.ts.net.] MatchDomains:[taile849b2.ts.net. ts.net.]+65arpa}
+2026/08/11 12:57:54 netcheck: DetectCaptivePortal(found=false)
+[Termux] /proc/net/if_inet6 unavailable
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
+2026/08/11 12:57:54 magicsock: endpoints changed: 46.184.22.22:64010 (stun), [2a02:88c:2007:68a:c46a:7b1e:f30:d503]:51748 (stun), 192.168.0.5:41328 (local), [2a02:88c:2007:68a:c46a:7b1e:f30:d503]:41328 (local)
+2026/08/11 12:57:56 cert("tailscale-termux.taile849b2.ts.net"): registered ACME account.
+2026/08/11 12:57:56 cert("tailscale-termux.taile849b2.ts.net"): acme: using dns-01: no cached certificate for Funnel renewal
+2026/08/11 12:57:57 cert("tailscale-termux.taile849b2.ts.net"): starting SetDNS call for _acme-challenge.tailscale-termux.taile849b2.ts.net...
+2026/08/11 12:58:08 cert("tailscale-termux.taile849b2.ts.net"): did SetDNS for _acme-challenge.tailscale-termux.taile849b2.ts.net
+2026/08/11 12:58:10 cert("tailscale-termux.taile849b2.ts.net"): requesting cert...
+2026/08/11 12:58:12 cert("tailscale-termux.taile849b2.ts.net"): got cert
+2026/08/11 12:58:12 health(warnable=tls-cert-pending): ok
+[Termux] /proc/net/if_inet6 unavailable
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
+2026/08/11 13:05:54 serve: closing idle connections to http://127.0.0.1:3000
+2026/08/11 13:05:54 Hostinfo.IngressEnabled changed to false
+2026/08/11 13:05:54 health(warnable=invalid-packet-filter): error: The coordination server sent an invalid packet filter permitting traffic to unlocked nodes; rejecting all packets for safety
+2026/08/11 13:05:54 health(warnable=invalid-packet-filter): ok
+2026/08/11 13:05:54 netmap: suggested exit node:  ()
+[Termux] /proc/net/if_inet6 unavailable
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
+2026/08/11 13:05:54 tstun: peer config: peerConfigTable(nil)
+2026/08/11 13:05:54 wgengine: Reconfig: configuring userspace WireGuard config (with 0 peers)
+2026/08/11 13:05:54 wgengine: Reconfig: configuring router
+2026/08/11 13:05:54 wgengine: Reconfig: configuring DNS
+2026/08/11 13:05:54 dns: Set: {DefaultResolvers:[] Routes:{taile849b2.ts.net.:[] ts.net.:[199.247.155.53 2620:111:8007::53]}+65arpa SearchDomains:[taile849b2.ts.net.] Hosts:1}
+2026/08/11 13:05:54 dns: Resolvercfg: {Routes:{ts.net.:[199.247.155.53 2620:111:8007::53]} Hosts:1 LocalDomains:[taile849b2.ts.net.]+65arpa}
+2026/08/11 13:05:54 dns: OScfg: {Nameservers:[100.100.100.100 fd7a:115c:a1e0::53] SearchDomains:[taile849b2.ts.net.] MatchDomains:[taile849b2.ts.net. ts.net.]+65arpa}
+2026/08/11 13:05:56 logtail: upload: log upload of 2575 bytes compressed failed: Post "https://log.tailscale.com/c/tailnode.log.tailscale.io/b0903f415f6de6441346966c2a7eec7a73df9e609b8ddd0485522cf3a7a6db4a": read tcp [2a02:88c:2007:68a:c46a:7b1e:f30:d503]:36110->[2606:b740:1:20::102]:443: read: connection reset by peer
+2026/08/11 13:06:30 logtail: upload succeeded after 1 failures and 34s
+[Termux] /proc/net/if_inet6 unavailable
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
+[Termux] /proc/net/if_inet6 unavailable
+[Termux] UDPv6 probe detected global IPv6: 2a02:88c:2007:68a:c46a:7b1e:f30:d503
+[Termux] anet.Interfaces error: route ip+net: netlinkrib: permission denied, falling back to ifconfig
+[Termux] ifconfigFallback: attached probed IPv6 2a02:88c:2007:68a:c46a:7b1e:f30:d503 to wlan0
+[Termux] ifconfig fallback (with IPv6): 2 ifs, v4=true v6=true
