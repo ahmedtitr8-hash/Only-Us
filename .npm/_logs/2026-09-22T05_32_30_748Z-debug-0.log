@@ -1,0 +1,35 @@
+0 verbose cli /data/data/com.termux/files/usr/bin/node /data/data/com.termux/files/usr/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@11.19.1
+2 info using node@v26.4.0
+3 silly config load:file:/data/data/com.termux/files/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/data/data/com.termux/files/home/.npmrc
+5 silly config load:file:/data/data/com.termux/files/usr/etc/npmrc
+6 verbose title npm exec wrangler login
+7 verbose argv "exec" "--" "wrangler" "login"
+8 verbose logfile logs-max:10 dir:/data/data/com.termux/files/home/.npm/_logs/2026-09-22T05_32_30_748Z-
+9 verbose logfile /data/data/com.termux/files/home/.npm/_logs/2026-09-22T05_32_30_748Z-debug-0.log
+10 silly logfile start cleaning logs, removing 1 files
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:1113325568 maxSize:278331392 maxEntrySize:139165696
+13 http fetch GET 200 https://registry.npmjs.org/wrangler 3573ms (cache miss)
+14 silly packumentCache heap:1113325568 maxSize:278331392 maxEntrySize:139165696
+15 silly packumentCache heap:1113325568 maxSize:278331392 maxEntrySize:139165696
+16 verbose stack Error: canceled
+16 verbose stack     at Interface.<anonymous> (/data/data/com.termux/files/usr/lib/node_modules/npm/node_modules/read/dist/commonjs/read.js:89:21)
+16 verbose stack     at Interface.emit (node:events:509:20)
+16 verbose stack     at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1327:18)
+16 verbose stack     at ReadStream.onkeypress (node:internal/readline/interface:284:20)
+16 verbose stack     at ReadStream.emit (node:events:509:20)
+16 verbose stack     at emitKeys (node:internal/readline/utils:371:14)
+16 verbose stack     at emitKeys.next (<anonymous>)
+16 verbose stack     at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+16 verbose stack     at ReadStream.emit (node:events:509:20)
+16 verbose stack     at addChunk (node:internal/streams/readable:568:12)
+17 error canceled
+18 verbose cwd /data/data/com.termux/files/home
+19 verbose os Linux 5.4.286-android12-9-g9567b16fd941-ab762
+20 verbose node v26.4.0
+21 verbose npm  v11.19.1
+22 verbose exit 1
+23 verbose code 1
+24 error A complete log of this run can be found in: /data/data/com.termux/files/home/.npm/_logs/2026-09-22T05_32_30_748Z-debug-0.log
