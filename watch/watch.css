@@ -1,0 +1,118 @@
+/* ============================================================
+   watch.css
+   كل تصميم فئة "نتابع" (شريط إدخال رابط الفيديو، المشغّل، أزرار
+   التحكم، شريط التقدّم، الأخطاء). منقول بالكامل من core/style.css.
+   يعتمد على متغيرات :root المعرّفة بـcore/style.css فلازم يتحمّل بعده.
+   ============================================================ */
+
+.video-input-bar {
+  position: absolute; z-index: 15;
+  top: 12px; left: 12px; right: 12px;
+  display: flex; align-items: center; gap: 10px;
+  background: var(--panel-2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 4px 4px 4px 14px;
+  box-shadow: 0 14px 34px -12px rgba(0,0,0,0.55);
+  animation: dropdownIn .15s ease;
+}
+@keyframes dropdownIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+.input-icon { color: var(--text-faint); }
+.video-input-bar input { flex: 1; min-width: 0; border: none; background: transparent; color: var(--text); font-family: inherit; font-size: 13.5px; padding: 9px 4px; }
+.video-input-bar input:focus { outline: none; box-shadow: none; }
+.video-input-bar button {
+  padding: 9px 18px; border: none; border-radius: var(--radius-sm);
+  background: var(--accent); color: white; font-family: inherit; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: background .15s ease; flex-shrink: 0;
+}
+.video-input-bar button:hover { background: var(--accent-hover); }
+
+/* #change-video-btn صار بالـ topbar الآن ويرث شكل .icon-btn العادي (شوف index.html) */
+
+#player-container {
+  width: 100%; aspect-ratio: 16/9;
+  background: #000; border-radius: var(--radius-md); border: 1px solid var(--border-soft);
+  overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+#placeholder {
+  position: absolute; inset: 0; color: var(--text-faint);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+}
+#placeholder svg { width: 34px; height: 34px; }
+.add-video-btn {
+  padding: 10px 20px; border: none; border-radius: var(--radius-sm);
+  background: var(--accent); color: white; font-family: inherit; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: background .15s ease;
+}
+.add-video-btn:hover { background: var(--accent-hover); }
+#youtube-player, #native-player {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000;
+}
+
+.custom-controls {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 5;
+  display: flex; align-items: center; gap: 10px; padding: 8px 12px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.55) 70%, transparent);
+  opacity: 1; transition: opacity .25s ease;
+}
+.custom-controls.controls-hidden { opacity: 0; pointer-events: none; }
+.control-btn {
+  background: none; border: none; color: white; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  padding: 4px; opacity: 0.92; transition: opacity .15s ease; flex-shrink: 0;
+}
+.control-btn:hover { opacity: 1; }
+.control-btn svg { width: 18px; height: 18px; }
+.control-btn:disabled { opacity: .35; cursor: default; }
+
+.time-label {
+  color: rgba(255,255,255,0.85); font-size: 11px; font-variant-numeric: tabular-nums;
+  flex-shrink: 0; min-width: 34px; text-align: center;
+}
+
+.progress-track { flex: 1; height: 4px; background: rgba(255,255,255,0.25); border-radius: 999px; position: relative; cursor: pointer; touch-action: none; }
+.progress-track.disabled { cursor: default; pointer-events: none; }
+.progress-fill { position: absolute; right: 0; top: 0; bottom: 0; width: 0%; background: var(--accent); border-radius: 999px; transition: width .25s linear; }
+.progress-handle {
+  position: absolute; top: 50%; right: 0%; width: 11px; height: 11px; background: white;
+  border-radius: 50%; transform: translate(50%, -50%); box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  transition: right .25s linear;
+}
+.progress-track.dragging .progress-fill,
+.progress-track.dragging .progress-handle { transition: none; }
+.progress-track.disabled .progress-handle { display: none; }
+
+.video-volume-group { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.video-volume-group input[type="range"] { width: 48px; }
+.video-volume-group input[type="range"]::-webkit-slider-thumb { background: white; border-color: rgba(0,0,0,0.3); }
+.video-volume-group input[type="range"] { background: rgba(255,255,255,0.25); }
+
+/* ---- شارة رمز الغرفة انحذفت — زر النسخ اللي بالأعلى يكفي ---- */
+
+.buffering-overlay {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 6;
+  background: rgba(0,0,0,0.55); border-radius: 50%;
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+}
+.buffering-overlay .spinner { width: 18px; height: 18px; }
+
+.player-error {
+  position: absolute; inset: 0; z-index: 8;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  background: rgba(11,12,15,0.9); color: var(--text-dim); font-size: 13px;
+  text-align: center; padding: 20px;
+}
+#player-error-retry {
+  padding: 8px 20px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--panel-2); color: var(--text); font-family: inherit; font-size: 12.5px; font-weight: 600;
+  cursor: pointer; transition: background .15s ease;
+}
+#player-error-retry:hover { background: var(--panel-3); }
+
+/* ---- ملء الشاشة: يعطي الفيديو مساحة أكبر مؤقتًا ---- */
+#main-layout:fullscreen #video-input-bar,
+#main-layout:fullscreen #change-video-btn { display: none; }
+/* الفيديو كان يلزق تمامًا بأعلى حافة الشاشة بوضع ملء الشاشة (تحت الكاميرا/الحواف مباشرة) —
+   نزلناه مسافة (٣٦px كحد أدنى) تحترم أي "notch" بالجهاز. */
+#main-layout:fullscreen .video-section {
+  padding-top: max(36px, env(safe-area-inset-top));
+}
