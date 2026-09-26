@@ -61,7 +61,7 @@ function openPermanentFlow() {
 }
 
 function showPermanentModePicker(name) {
-  permanentModeGreeting.textContent = 'هلا ' + name + '، وش نسوي بغرفتنا الدائمة؟';
+  permanentModeGreeting.textContent = 'هلا ' + name + '، وش نتشارك به؟';
   goToStep(entryStepPermanentMode);
 }
 
