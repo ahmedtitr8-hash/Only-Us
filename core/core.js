@@ -223,7 +223,7 @@ function showEntryError(msg) {
 }
 
 const MODE_LABELS = { watch: 'نتابع', games: 'نلعب' };
-const MODE_CREATE_LABELS = { watch: 'إنشاء غرفة نتابع', games: 'إنشاء غرفة نلعب' };
+const MODE_CREATE_LABELS = { watch: 'إنشاء', games: 'إنشاء' };
 
 // عام لكل خطوات الدخول (بما فيها خطوات الغرفة الدائمة اللي تُضاف لاحقًا من
 // permanent.js) - نعتمد على كلاس entry-step المشترك بدل تعداد كل عنصر بالاسم،
@@ -537,7 +537,7 @@ function showConfirm(message) {
 // ================= الخروج من الغرفة =================
 
 leaveRoomBtn.addEventListener('click', async () => {
-  const ok = await showConfirm('تبي تنهي الغرفة؟ بتنتهي عند الطرف الثاني برضو.');
+  const ok = await showConfirm('الخروج');
   if (!ok) return;
   sendData({ kind: 'peer-left' });
   stopRoomHeartbeat();
