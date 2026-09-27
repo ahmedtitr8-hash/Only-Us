@@ -1,0 +1,418 @@
+/* ============================================================
+   wird.css — فئة "وِرد": هوية ذهبي دافئ + خط Amiri الكلاسيكي
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+
+/* الإصلاح الأهم: صفحة "وِرد" تُحقن كـ.screen مستقل (زي #reference-view
+   بالضبط)، فلازم هي نفسها منطقة التمرير - لا #wird-root ولا أي عنصر داخلها،
+   لأن #wird-fragment-mount ما له ارتفاع محدد فـheight:100% الداخلية ما تشتغل. */
+#wird-view { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+#wird-root {
+  --wird-gold: #c9a24d;
+  --wird-gold-bright: #e5c476;
+  --wird-gold-deep: #8a6b2c;
+  --wird-gold-soft: rgba(201, 162, 77, 0.14);
+  --wird-panel: #16140f;
+  --wird-panel-2: #1c1811;
+  --wird-border: #2b2416;
+  background: var(--bg);
+  min-height: 100%;
+}
+
+#wird-root .amiri { font-family: 'Amiri', 'IBM Plex Sans Arabic', serif; }
+
+/* ---------- الشريط العلوي ---------- */
+.wird-topbar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px 18px;
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(11, 12, 15, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--wird-border);
+}
+.wird-back {
+  width: 34px; height: 34px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-dim); background: var(--panel);
+  border: 1px solid var(--border); text-decoration: none;
+  flex-shrink: 0; cursor: pointer; padding: 0; font-family: inherit;
+  transition: color .15s, border-color .15s;
+}
+.wird-back:hover { color: var(--wird-gold-bright); border-color: var(--wird-gold-deep); }
+.wird-brand {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Amiri', serif; font-weight: 700; font-size: 19px;
+  color: var(--text);
+}
+.wird-brand svg { color: var(--wird-gold); width: 19px; height: 19px; }
+.wird-spacer { flex: 1; }
+#wird-account-btn.logged-in { border-color: var(--wird-gold-deep); color: var(--wird-gold-bright); }
+
+/* ---------- المحتوى العام ---------- */
+.wird-main {
+  padding: 20px 18px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ---------- الرئيسية: بطاقتا اختيار ---------- */
+#wird-home { padding-top: 15vh; gap: 14px; }
+.wird-home-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 18px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--wird-border);
+  background: linear-gradient(180deg, var(--wird-panel-2), var(--wird-panel));
+  color: var(--text);
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color .2s, transform .2s;
+}
+.wird-home-card:hover { border-color: var(--wird-gold-deep); transform: translateY(-2px); }
+.wird-home-card svg { width: 30px; height: 30px; color: var(--wird-gold); margin-bottom: 4px; }
+.wird-home-card-title { font-family: 'Amiri', serif; font-weight: 700; font-size: 20px; }
+.wird-home-card-sub { font-size: 12.5px; color: var(--text-faint); }
+
+/* ---------- زر الرجوع للرئيسية داخل قسم ---------- */
+.wird-section-back {
+  display: flex; align-items: center; gap: 4px;
+  align-self: flex-start;
+  padding: 6px 4px;
+  border: none; background: none;
+  color: var(--text-faint);
+  font-family: inherit; font-size: 13px;
+  cursor: pointer;
+}
+.wird-section-back:hover { color: var(--wird-gold-bright); }
+.wird-section-back svg { width: 16px; height: 16px; }
+
+/* ---------- تبويبات ---------- */
+.wird-tabs {
+  display: flex;
+  gap: 22px;
+  border-bottom: 1px solid var(--wird-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.wird-tabs::-webkit-scrollbar { display: none; }
+.wird-tab {
+  padding: 8px 2px 12px;
+  border: none;
+  background: none;
+  color: var(--text-faint);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  flex-shrink: 0;
+}
+.wird-tab.active { color: var(--wird-gold-bright); }
+.wird-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; right: 0; left: 0;
+  height: 2px;
+  background: var(--wird-gold);
+  border-radius: 2px;
+}
+
+/* ---------- مختصر / كامل: تباين واضح، بلا التباس ---------- */
+.wird-version-toggle {
+  display: flex;
+  gap: 8px;
+  align-self: flex-start;
+}
+.wird-version-btn {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1.5px solid var(--wird-border);
+  background: var(--wird-panel-2);
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.wird-version-btn.active {
+  background: var(--wird-gold);
+  border-color: var(--wird-gold);
+  color: #14100a;
+}
+
+/* ---------- بطاقة الذكر الواحد: إطار محدد، عناصر التحكم جمب بعض ---------- */
+.wird-dhikr-frame {
+  border: 1px solid var(--wird-border);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(420px circle at 50% -10%, rgba(201,162,77,0.10), transparent 60%),
+    var(--wird-panel);
+  padding: 18px;
+  max-width: 460px;
+  width: 100%;
+  margin: 0 auto;
+  touch-action: pan-y;
+}
+.wird-dhikr-pos {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-bottom: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.wird-dhikr-body {
+  min-height: 160px;
+  max-height: 46vh;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  padding: 6px 4px;
+}
+.wird-dhikr-text {
+  font-family: 'Amiri', serif;
+  font-size: 19px;
+  line-height: 2.1;
+  color: var(--text);
+  text-align: center;
+  width: 100%;
+}
+.wird-dhikr-source {
+  display: block;
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--text-faint);
+  text-align: center;
+}
+.wird-dhikr-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--wird-border);
+}
+.wird-dhikr-nav {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--wird-border);
+  background: var(--wird-panel-2);
+  color: var(--text-dim);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.wird-dhikr-nav:hover { border-color: var(--wird-gold-deep); color: var(--wird-gold-bright); }
+.wird-dhikr-nav svg { width: 18px; height: 18px; }
+.wird-dhikr-counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  min-width: 76px;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--wird-gold-deep);
+  background: var(--wird-gold-soft);
+  color: var(--wird-gold-bright);
+  font-family: inherit;
+  cursor: pointer;
+  user-select: none;
+}
+.wird-dhikr-counter span { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.wird-dhikr-counter small { font-size: 10px; color: var(--text-faint); }
+.wird-dhikr-counter:active { transform: scale(0.96); }
+
+.wird-status { padding: 20px 4px; text-align: center; color: var(--text-faint); font-size: 13px; width: 100%; }
+.wird-status.error { color: var(--danger); }
+
+/* ---------- زر اختيار السورة (بدل select النظام) ---------- */
+.wird-surah-picker-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--wird-border);
+  background: var(--wird-panel-2);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14.5px;
+  cursor: pointer;
+}
+.wird-surah-picker-btn:hover { border-color: var(--wird-gold-deep); }
+.wird-surah-picker-btn svg { width: 17px; height: 17px; color: var(--text-faint); }
+
+.wird-surah-list { max-height: 50vh; overflow-y: auto; text-align: right; margin: 8px 0 14px; }
+.wird-surah-list-item {
+  display: block;
+  width: 100%;
+  padding: 11px 8px;
+  border: none;
+  background: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  text-align: right;
+  cursor: pointer;
+  border-bottom: 1px solid var(--wird-border);
+}
+.wird-surah-list-item:hover { color: var(--wird-gold-bright); }
+.wird-sheet { max-width: 380px; text-align: center; }
+
+/* ---------- إطار عرض القرآن: خلفية مخطوطة بدل نص عادي ---------- */
+.wird-quran-frame {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 2px;
+  background: linear-gradient(160deg, var(--wird-gold-deep), var(--wird-border) 40%, var(--wird-border));
+}
+.wird-quran-verses {
+  position: relative;
+  background:
+    radial-gradient(500px circle at 15% 0%, rgba(201,162,77,0.08), transparent 55%),
+    var(--wird-panel);
+  border-radius: calc(var(--radius-lg) - 2px);
+  padding: 26px 22px;
+  min-height: 140px;
+}
+.wird-quran-frame::before {
+  content: '';
+  position: absolute; inset: 8px;
+  border: 1px solid rgba(201,162,77,0.25);
+  border-radius: calc(var(--radius-lg) - 6px);
+  pointer-events: none;
+}
+.wird-quran-verse-text {
+  font-family: 'Amiri', serif;
+  font-size: 21px;
+  line-height: 2.5;
+  text-align: justify;
+  color: var(--text);
+}
+.wird-ayah-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin: 0 4px;
+  border-radius: 50%;
+  border: 1px solid var(--wird-gold-deep);
+  color: var(--wird-gold-bright);
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+/* ---------- خطة الختمة ---------- */
+.wird-plan-form { display: flex; flex-direction: column; gap: 10px; }
+.wird-plan-label { font-size: 12.5px; color: var(--text-faint); margin-top: 6px; }
+.wird-choice-row { display: flex; gap: 8px; }
+.wird-choice-btn {
+  flex: 1;
+  padding: 10px 6px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--wird-border);
+  background: var(--wird-panel-2);
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.wird-choice-btn.active { background: var(--wird-gold); border-color: var(--wird-gold); color: #14100a; }
+.wird-plan-input-row {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 4px;
+}
+.wird-plan-number-input {
+  width: 100px;
+  padding: 11px;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--wird-border);
+  background: var(--wird-panel-2);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+.wird-plan-input-row span { color: var(--text-dim); font-size: 14px; }
+.wird-plan-preview { font-size: 12.5px; color: var(--wird-gold-bright); min-height: 18px; }
+.wird-plan-submit { margin-top: 6px; }
+
+.wird-daily-card { display: flex; flex-direction: column; gap: 14px; }
+.wird-daily-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.wird-daily-range { font-family: 'Amiri', serif; font-weight: 700; font-size: 18px; color: var(--text); }
+.wird-daily-meta { font-size: 12px; color: var(--text-faint); margin-top: 3px; }
+.wird-daily-backlog {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.wird-daily-done-btn { width: 100%; padding: 13px; }
+.wird-plan-reset-link {
+  align-self: center;
+  background: none; border: none;
+  color: var(--text-faint);
+  font-family: inherit; font-size: 11.5px;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: -4px;
+}
+
+/* ---------- مودال الحساب / الورقة ---------- */
+.wird-modal-overlay {
+  position: fixed; inset: 0; z-index: 50;
+  background: rgba(6,7,9,0.72); backdrop-filter: blur(3px);
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+}
+.wird-modal {
+  width: 100%; max-width: 340px; padding: 22px;
+  background: var(--wird-panel); border: 1px solid var(--wird-border); border-radius: var(--radius-md);
+  text-align: center;
+}
+.wird-modal-title { font-family: 'Amiri', serif; font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.wird-modal-hint { font-size: 11.5px; color: var(--text-faint); line-height: 1.6; margin-bottom: 16px; }
+.wird-modal input, .wird-modal .editable-field {
+  width: 100%; padding: 13px; text-align: center;
+  font-size: 24px; font-weight: 700; letter-spacing: 10px; font-variant-numeric: tabular-nums;
+  background: var(--wird-panel-2); border: 1px solid var(--wird-border); border-radius: var(--radius-sm);
+  color: var(--text); font-family: inherit; outline: none;
+}
+.wird-modal input:focus, .wird-modal .editable-field:focus { border-color: var(--wird-gold); }
+.wird-modal-error { margin-top: 10px; font-size: 12px; color: var(--danger, #e5534b); }
+.wird-modal-actions { display: flex; gap: 10px; margin-top: 16px; }
+.wird-modal-btn {
+  flex: 1; padding: 11px; border-radius: var(--radius-sm); border: 1px solid var(--wird-border);
+  font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer;
+}
+.wird-modal-btn.secondary { background: var(--wird-panel-2); color: var(--text-dim); }
+.wird-modal-btn.primary { background: var(--wird-gold); color: #14100a; border-color: var(--wird-gold); }
+.wird-modal-btn.primary:hover { background: var(--wird-gold-bright); }
+.wird-modal-logout {
+  margin-top: 14px; background: none; border: none; color: var(--text-faint);
+  font-family: inherit; font-size: 12px; text-decoration: underline; cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wird-home-card { transition: none; }
+}
