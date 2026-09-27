@@ -1,0 +1,70 @@
+<!-- ============================================================
+     wird.html
+     فئة "وِرد": طبقة مستقلة فوق نفس الصفحة (بدون غرفة ولا اتصال حي) - بنفس
+     أسلوب "مرجع" بالضبط: حساب برمز مكوّن من ٤ أرقام (نفس حساب مرجع، نفس
+     مجموعة users بفايربيس)، محتوى ثابت (أذكار صباح/مساء/نوم، مختصر/كامل)
+     + تشيك أسبوعي مرتبط بالحساب نفسه (يتجدد تلقائيًا كل أسبوع).
+     ============================================================ -->
+
+<div id="wird-root">
+
+  <header class="wird-topbar">
+    <button type="button" id="wird-back-btn" class="wird-back" title="رجوع لـ onlyUs">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="wird-brand">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 3c-3 3-5 6-5 9a5 5 0 0 0 10 0c0-3-2-6-5-9Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <span>وِرد</span>
+    </div>
+    <div class="wird-spacer"></div>
+    <button type="button" id="wird-account-btn" class="wird-back" title="حسابي">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.3" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <main class="wird-main">
+
+    <!-- التشيك الأسبوعي (مرتبط بالحساب، مو بجهاز) -->
+    <div class="wird-check-card">
+      <div class="wird-check-text">
+        <p class="wird-check-title">سويت وردك الأسبوع؟</p>
+        <p class="wird-check-sub" id="wird-check-sub">سجّل دخولك بنفس رمز مرجع عشان يتحفظ لكم الاثنين</p>
+      </div>
+      <button type="button" class="wird-check-btn" id="wird-check-btn">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <!-- تبويبات الأذكار الثلاث -->
+    <nav class="wird-tabs" id="wird-tabs">
+      <button type="button" class="wird-tab active" data-wird-section="morning">أذكار الصباح</button>
+      <button type="button" class="wird-tab" data-wird-section="evening">أذكار المساء</button>
+      <button type="button" class="wird-tab" data-wird-section="sleep">أذكار النوم</button>
+    </nav>
+
+    <!-- مختصر / كامل -->
+    <div class="wird-version-toggle" id="wird-version-toggle">
+      <button type="button" class="wird-version-btn active" data-wird-version="short">مختصر</button>
+      <button type="button" class="wird-version-btn" data-wird-version="full">كامل</button>
+    </div>
+
+    <div class="wird-list" id="wird-list"></div>
+
+  </main>
+
+  <!-- مودال الحساب: نفس حساب "مرجع" بالضبط (نفس الرمز، نفس مجموعة users) -->
+  <div class="wird-modal-overlay hidden" id="wird-account-modal">
+    <div class="wird-modal">
+      <div class="wird-modal-title" id="wird-account-modal-title">...</div>
+      <p class="wird-modal-hint">نفس رمز حسابك بـ"مرجع" (لو عندكم وحد) يشتغل هنا تلقائيًا</p>
+      <div id="wird-account-code-input" class="editable-field" data-placeholder="----" role="textbox"></div>
+      <p class="wird-modal-error hidden" id="wird-account-modal-error"></p>
+      <div class="wird-modal-actions">
+        <button type="button" class="wird-modal-btn secondary" id="wird-account-modal-cancel">إلغاء</button>
+        <button type="button" class="wird-modal-btn primary" id="wird-account-modal-confirm">دخول</button>
+      </div>
+      <button type="button" class="wird-modal-logout hidden" id="wird-account-modal-logout">تسجيل خروج من هذا الجهاز</button>
+    </div>
+  </div>
+
+</div>
