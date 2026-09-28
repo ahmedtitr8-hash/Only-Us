@@ -36,6 +36,7 @@ let accountData = { favorites: [], watched: [], watchedEpisodes: [] }; // تتح
 // تقدر تضيف أكثر من حساب هنا — البحث يدور بكل الحسابات مع بعض ويرجع أفضل تطابق.
 const XTREAM_SOURCES = [
   { name: 'qimyclient', base: 'https://qimyclient.store', username: 'star5089', password: '123456' },
+  { name: 'dana8kone', base: 'http://dana8kone.com:8080', username: 'Sbhanmansor', password: '01g2f8070' },
 ];
 
 let xtreamMoviesCache = null; // array مجمّعة من كل المصادر (تتحمل مرة وحدة وتنكاش)
