@@ -1,0 +1,37 @@
+{
+  "updatedAt": "2026-09-29T05:54:11.904Z",
+  "sources": {
+    "qimyclient": {
+      "ok": false,
+      "error": "HTTP 530"
+    },
+    "dana8kone": {
+      "ok": true,
+      "account": "Active",
+      "expires": "1933013934",
+      "maxConnections": "1",
+      "movies": 76058,
+      "series": 10476,
+      "episodes": {
+        "reused": 0,
+        "fetched": 10476,
+        "failed": 0,
+        "pending": 0
+      }
+    },
+    "norzro": {
+      "ok": true,
+      "account": "Active",
+      "expires": "1813323900",
+      "maxConnections": "1",
+      "movies": 19072,
+      "series": 8795,
+      "episodes": {
+        "reused": 0,
+        "fetched": 8607,
+        "failed": 188,
+        "pending": 0
+      }
+    }
+  }
+}
