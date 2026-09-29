@@ -1,0 +1,75 @@
+name: stream-relay-test
+# تجربة فقط: يشغّل وسيط + قناة https عامة، ويطبع رابط مشاهدة الفيديو في اللوج والملخص.
+on:
+  workflow_dispatch:
+    inputs:
+      movie_url:
+        description: 'رابط الفيلم الأصلي (http)'
+        required: true
+        default: 'http://a.norzro.cfd/movie/8667593288/2505245402/795918.mkv'
+      minutes:
+        description: 'كم دقيقة يظل شغال'
+        required: true
+        default: '20'
+permissions:
+  contents: read
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      MOVIE_URL: ${{ github.event.inputs.movie_url }}
+      MINUTES: ${{ github.event.inputs.minutes }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Start relay
+        run: |
+          nohup node proxy/relay.mjs > relay.log 2>&1 &
+          sleep 2
+          curl -sf http://127.0.0.1:8787/ping && echo " relay ok"
+
+      - name: Test upstream from runner (1 byte)
+        run: |
+          ENC=$(node -p "encodeURIComponent(process.env.MOVIE_URL)")
+          curl -s -m 60 -D - -o /dev/null -H "Range: bytes=0-0" "http://127.0.0.1:8787/p?u=$ENC" | head -12 || true
+
+      - name: Open public tunnel
+        run: |
+          nohup ssh -T -o StrictHostKeyChecking=no -o ServerAliveInterval=30 -o ExitOnForwardFailure=yes \
+            -R 80:127.0.0.1:8787 nokey@localhost.run > tunnel.log 2>&1 &
+          TUNNEL=""
+          for i in $(seq 1 30); do
+            TUNNEL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.(lhr\.life|localhost\.run)' tunnel.log | head -1 || true)
+            [ -n "$TUNNEL" ] && break
+            sleep 2
+          done
+          if [ -z "$TUNNEL" ]; then echo "لم تنفتح القناة:"; cat tunnel.log; exit 1; fi
+          echo "TUNNEL=$TUNNEL" >> "$GITHUB_ENV"
+
+      - name: Print watch link
+        run: |
+          ENC=$(node -p "encodeURIComponent(process.env.MOVIE_URL)")
+          LINK="$TUNNEL/watch?u=$ENC"
+          echo "رابط المشاهدة: $LINK"
+          {
+            echo "### رابط المشاهدة (يظل شغال $MINUTES دقيقة)"
+            echo ""
+            echo "$LINK"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep alive
+        run: |
+          END=$(( $(date +%s) + MINUTES * 60 ))
+          while [ "$(date +%s)" -lt "$END" ]; do
+            curl -s -m 10 -o /dev/null -w "tunnel ping: %{http_code}\n" "$TUNNEL/ping" || echo "tunnel ping failed"
+            tail -n 3 relay.log
+            sleep 60
+          done
+
+      - name: Relay log
+        if: always()
+        run: cat relay.log || true
