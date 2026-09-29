@@ -37,7 +37,7 @@ let accountData = { favorites: [], watched: [], watchedEpisodes: [] }; // تتح
 // رابط الـWorker (Cloudflare) اللي بمجلد src/ — يمرّر الطلبات والفيديو لمصادر http:// عشان
 // المتصفح ما يحجبها من صفحة https. مثال: 'https://onlyus-xtream-proxy.YOURNAME.workers.dev'
 // لو تركته فاضي، مصادر http:// (مثل tvdragon) تعتمد على بروكسيات عامة للبحث بس، والتشغيل غالبًا يتحجب.
-const XTREAM_PROXY = '';
+const XTREAM_PROXY = 'https://only-us.ahmedtitr8.workers.dev/';
 
 const XTREAM_SOURCES = [
   { name: 'qimyclient', base: 'https://qimyclient.store', username: 'star5089', password: '123456' },
