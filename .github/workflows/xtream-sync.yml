@@ -1,0 +1,27 @@
+name: xtream-sync
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # كل 6 ساعات
+  workflow_dispatch:         # تشغيل يدوي من تبويب Actions
+permissions:
+  contents: write
+concurrency:
+  group: xtream-sync
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Fetch xtream catalogs
+        run: node scripts/fetch-xtream.mjs
+      - name: Commit changes
+        run: |
+          git config user.name "xtream-sync[bot]"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/xtream
+          git diff --cached --quiet || (git commit -m "chore: update xtream catalogs" && git push)
