@@ -41,7 +41,7 @@ const XTREAM_PROXY = 'https://only-us.ahmedtitr8.workers.dev/';
 
 const XTREAM_SOURCES = [
   { name: 'qimyclient', base: 'https://qimyclient.store', username: 'star5089', password: '123456' },
-  { name: 'tvdragon', base: 'http://33.tvdragon.com', username: '523c37ad', password: '73f6a97b' },
+  { name: 'norzro', base: 'http://a.norzro.cfd', username: '8667593288', password: '2505245402' },
 ];
 
 // قوائم الأفلام/المسلسلات تتحمّل لكل مصدر لحاله (وتنكاش) — عشان أي مصدر بطيء أو معطّل
