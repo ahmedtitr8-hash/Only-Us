@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-30T12:06:32.207Z",
+  "updatedAt": "2026-09-30T21:58:40.267Z",
   "sources": {
     "qimyclient": {
       "ok": false,
@@ -11,10 +11,10 @@
       "expires": "1933013934",
       "maxConnections": "1",
       "movies": 76060,
-      "series": 10480,
+      "series": 10482,
       "episodes": {
-        "reused": 10471,
-        "fetched": 9,
+        "reused": 10464,
+        "fetched": 18,
         "failed": 0,
         "pending": 0
       }
@@ -24,11 +24,11 @@
       "account": "Active",
       "expires": "1813323900",
       "maxConnections": "1",
-      "movies": 19079,
+      "movies": 19081,
       "series": 8798,
       "episodes": {
-        "reused": 8798,
-        "fetched": 0,
+        "reused": 8782,
+        "fetched": 16,
         "failed": 0,
         "pending": 0
       }
