@@ -6,7 +6,7 @@
 //    كسيكرت (worker/relay-start.js)، فما تدخل ولا تشوف أي توكن.
 //  - لو تركته فاضي: الزر يستخدم توكن GitHub تدخله مرة وحدة بالجهاز (يتخزن ولا يسألك ثاني).
 // الحالة تنقرأ من data/relay.json (اللي ينشره الأكشن) وتتأكد إن القناة ترد.
-window.RELAY_START_ENDPOINT = window.RELAY_START_ENDPOINT || ''; // مثال: 'https://only-us-relay.ahmedtitr8.workers.dev'
+window.RELAY_START_ENDPOINT = window.RELAY_START_ENDPOINT || 'https://only-us-relay.ahmedtitr8.workers.dev'; // مثال: 'https://only-us-relay.ahmedtitr8.workers.dev'
 
 (function () {
   const WORKFLOW = 'stream-relay.yml';
