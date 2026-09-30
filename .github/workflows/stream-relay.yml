@@ -1,0 +1,95 @@
+name: stream-relay
+# وسيط تشغيل روابط http لموقع Only-Us: يشغّل proxy/relay.mjs + قناة https، وينشر الرابط في data/relay.json.
+# الموقع يشغّله تلقائيًا (dispatch) لما يحتاجه، وتقدر تشغّله يدويًا من هنا.
+on:
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: 'كم دقيقة يظل شغال (الحد الأقصى 340)'
+        required: true
+        default: '340'
+permissions:
+  contents: write
+concurrency:
+  group: stream-relay
+  cancel-in-progress: false
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      MINUTES: ${{ github.event.inputs.minutes }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Start relay
+        run: |
+          nohup node proxy/relay.mjs > relay.log 2>&1 &
+          sleep 2
+          curl -sf http://127.0.0.1:8787/ping && echo " relay ok"
+
+      - name: Start tunnel
+        run: |
+          curl -sL -o cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+          chmod +x cloudflared
+          nohup ./cloudflared tunnel --no-autoupdate --url http://127.0.0.1:8787 > tunnel.log 2>&1 &
+          TUNNEL=""
+          for i in $(seq 1 30); do
+            TUNNEL=$(grep -oE 'https://[a-zA-Z0-9-]+\.trycloudflare\.com' tunnel.log | head -1 || true)
+            if [ -n "$TUNNEL" ]; then break; fi
+            sleep 2
+          done
+          if [ -z "$TUNNEL" ]; then echo "لم تنفتح القناة:"; cat tunnel.log; exit 1; fi
+          echo "TUNNEL=$TUNNEL" >> "$GITHUB_ENV"
+          echo "tunnel: $TUNNEL"
+
+      - name: Publish relay url
+        run: |
+          case "$MINUTES" in ''|*[!0-9]*) MINUTES=340 ;; esac
+          if [ "$MINUTES" -gt 340 ]; then MINUTES=340; fi
+          echo "MINUTES=$MINUTES" >> "$GITHUB_ENV"
+          git config user.name "stream-relay[bot]"
+          git config user.email "actions@users.noreply.github.com"
+          EXP=$(date -u -d "+${MINUTES} minutes" +%Y-%m-%dT%H:%M:%SZ)
+          printf '{"url":"%s","startedAt":"%s","expiresAt":"%s"}\n' "$TUNNEL" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$EXP" > data/relay.json
+          git add data/relay.json
+          git commit -q -m "relay: up" || true
+          for i in 1 2 3 4; do
+            if git pull --rebase -q origin main && git push -q origin HEAD:main; then break; fi
+            sleep 3
+          done
+
+      - name: Keep alive
+        run: |
+          END=$(( $(date +%s) + MINUTES * 60 ))
+          FAILS=0
+          while [ "$(date +%s)" -lt "$END" ]; do
+            if curl -sf -m 10 "$TUNNEL/ping" > /dev/null; then
+              FAILS=0
+            else
+              FAILS=$((FAILS + 1))
+              echo "tunnel ping failed ($FAILS)"
+              if [ "$FAILS" -ge 3 ]; then echo "tunnel is dead, stopping so a fresh run can start"; exit 1; fi
+            fi
+            sleep 30
+          done
+
+      - name: Clear relay url
+        if: always()
+        run: |
+          git config user.name "stream-relay[bot]"
+          git config user.email "actions@users.noreply.github.com"
+          printf '{"url":null,"stoppedAt":"%s"}\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > data/relay.json
+          git add data/relay.json
+          git commit -q -m "relay: down" || true
+          for i in 1 2 3 4; do
+            if git pull --rebase -q origin main && git push -q origin HEAD:main; then break; fi
+            sleep 3
+          done
+
+      - name: Relay log
+        if: always()
+        run: cat relay.log || true
