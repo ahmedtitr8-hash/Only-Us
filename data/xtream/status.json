@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-30T23:14:36.625Z",
+  "updatedAt": "2026-10-01T02:40:48.270Z",
   "sources": {
     "qimyclient": {
       "ok": false,
@@ -24,12 +24,26 @@
       "account": "Active",
       "expires": "1813323900",
       "maxConnections": "1",
-      "movies": 19081,
-      "series": 8798,
+      "movies": 19080,
+      "series": 8795,
       "episodes": {
-        "reused": 8796,
-        "fetched": 2,
+        "reused": 8795,
+        "fetched": 0,
         "failed": 0,
+        "pending": 0
+      }
+    },
+    "tvdragon": {
+      "ok": true,
+      "account": "Active",
+      "expires": "1798474492",
+      "maxConnections": "1",
+      "movies": 97346,
+      "series": 24708,
+      "episodes": {
+        "reused": 0,
+        "fetched": 24647,
+        "failed": 61,
         "pending": 0
       }
     }
