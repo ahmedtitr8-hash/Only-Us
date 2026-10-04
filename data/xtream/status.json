@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-04T16:40:50.699Z",
+  "updatedAt": "2026-10-04T21:00:16.499Z",
   "sources": {
     "qimyclient": {
       "ok": false,
@@ -11,31 +11,31 @@
       "expires": "1933013934",
       "maxConnections": "1",
       "movies": 76074,
-      "series": 10510,
+      "series": 10513,
       "episodes": {
-        "reused": 10510,
-        "fetched": 0,
+        "reused": 10495,
+        "fetched": 18,
         "failed": 0,
         "pending": 0
       }
     },
     "norzro": {
+      "ok": false,
+      "error": "ECONNREFUSED"
+    },
+    "tvdragon": {
       "ok": true,
       "account": "Active",
-      "expires": "1813323900",
+      "expires": "1798474492",
       "maxConnections": "1",
-      "movies": 19076,
-      "series": 8778,
+      "movies": 97407,
+      "series": 24738,
       "episodes": {
-        "reused": 8777,
-        "fetched": 1,
+        "reused": 24720,
+        "fetched": 18,
         "failed": 0,
         "pending": 0
       }
-    },
-    "tvdragon": {
-      "ok": false,
-      "error": "UND_ERR_CONNECT_TIMEOUT"
     }
   }
 }
