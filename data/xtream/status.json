@@ -1,34 +1,24 @@
 {
-  "updatedAt": "2026-10-03T20:43:58.268Z",
+  "updatedAt": "2026-10-04T04:51:27.465Z",
   "sources": {
     "qimyclient": {
       "ok": false,
       "error": "HTTP 502"
     },
     "dana8kone": {
-      "ok": true,
-      "account": "Active",
-      "expires": "1933013934",
-      "maxConnections": "1",
-      "movies": 76074,
-      "series": 10510,
-      "episodes": {
-        "reused": 10510,
-        "fetched": 0,
-        "failed": 0,
-        "pending": 0
-      }
+      "ok": false,
+      "error": "UND_ERR_CONNECT_TIMEOUT"
     },
     "norzro": {
       "ok": true,
       "account": "Active",
       "expires": "1813323900",
       "maxConnections": "1",
-      "movies": 19078,
-      "series": 8778,
+      "movies": 19076,
+      "series": 8779,
       "episodes": {
-        "reused": 8768,
-        "fetched": 10,
+        "reused": 8770,
+        "fetched": 9,
         "failed": 0,
         "pending": 0
       }
@@ -38,12 +28,12 @@
       "account": "Active",
       "expires": "1798474492",
       "maxConnections": "1",
-      "movies": 97393,
-      "series": 24721,
+      "movies": 97396,
+      "series": 24726,
       "episodes": {
-        "reused": 24720,
-        "fetched": 1,
-        "failed": 0,
+        "reused": 24702,
+        "fetched": 22,
+        "failed": 2,
         "pending": 0
       }
     }
