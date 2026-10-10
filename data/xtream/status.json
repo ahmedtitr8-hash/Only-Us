@@ -1,12 +1,9 @@
 {
-  "updatedAt": "2026-10-10T12:05:23.044Z",
+  "updatedAt": "2026-10-10T21:18:24.869Z",
   "sources": {
     "qimyclient": {
       "ok": false,
-      "account": null,
-      "expires": null,
-      "maxConnections": null,
-      "error": "رد غير متوقع (الحساب ممكن منتهي)"
+      "error": "HTTP 502"
     },
     "dana8kone": {
       "ok": true,
@@ -14,10 +11,10 @@
       "expires": "1933013934",
       "maxConnections": "1",
       "movies": 76100,
-      "series": 10530,
+      "series": 10532,
       "episodes": {
-        "reused": 10520,
-        "fetched": 10,
+        "reused": 10527,
+        "fetched": 5,
         "failed": 0,
         "pending": 0
       }
@@ -28,10 +25,10 @@
       "expires": "1813323900",
       "maxConnections": "1",
       "movies": 19085,
-      "series": 8797,
+      "series": 8798,
       "episodes": {
-        "reused": 8796,
-        "fetched": 1,
+        "reused": 8795,
+        "fetched": 3,
         "failed": 0,
         "pending": 0
       }
@@ -42,10 +39,10 @@
       "expires": "1798474492",
       "maxConnections": "1",
       "movies": 97592,
-      "series": 24821,
+      "series": 24825,
       "episodes": {
-        "reused": 24818,
-        "fetched": 3,
+        "reused": 24800,
+        "fetched": 25,
         "failed": 0,
         "pending": 0
       }
