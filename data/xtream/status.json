@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-08T12:55:46.620Z",
+  "updatedAt": "2026-11-08T21:49:31.570Z",
   "sources": {
     "qimyclient": {
       "ok": false,
@@ -17,28 +17,21 @@
       "account": "Active",
       "expires": "1813323900",
       "maxConnections": "1",
-      "movies": 19114,
-      "series": 8893,
+      "movies": 19121,
+      "series": 8894,
       "episodes": {
-        "reused": 8886,
-        "fetched": 7,
+        "reused": 8877,
+        "fetched": 17,
         "failed": 0,
         "pending": 0
       }
     },
     "tvdragon": {
-      "ok": true,
+      "ok": false,
       "account": "Active",
       "expires": "1798474492",
       "maxConnections": "1",
-      "movies": 98450,
-      "series": 25041,
-      "episodes": {
-        "reused": 25039,
-        "fetched": 2,
-        "failed": 0,
-        "pending": 0
-      }
+      "error": "The operation was aborted due to timeout"
     }
   }
 }
